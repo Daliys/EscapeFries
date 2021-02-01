@@ -1,0 +1,171 @@
+﻿/******************************************************************************/
+/*
+  Project   - MudBun
+  Publisher - Long Bunny Labs
+              http://LongBunnyLabs.com
+  Author    - Ming-Lun "Allen" Chou
+              http://AllenChou.net
+*/
+/******************************************************************************/
+
+#pragma kernel clear_voxel_hash_table
+#pragma kernel clear_auto_smooth_vert_data_table
+#pragma kernel clear_voxel_cache
+#pragma kernel register_top_nodes
+#pragma kernel update_branching_indirect_dispatch_args
+#pragma kernel allocate_child_nodes
+#pragma kernel update_voxel_indirect_dispatch_args
+
+#include "../../Shader/ComputeCommon.cginc"
+
+#include "../../Shader/AabbTreeFuncs.cginc"
+#include "../../Shader/AutoSmoothDefs.cginc"
+#include "../../Shader/BrushFuncs.cginc"
+#include "../../Shader/GenPointDefs.cginc"
+#include "../../Shader/IndirectArgsDefs.cginc"
+#include "../../Shader/Math/MathConst.cginc"
+#include "../../Shader/VoxelFuncs.cginc"
+#include "../../Shader/VoxelCacheFuncs.cginc"
+#include "../../Shader/VoxelHashFuncs.cginc"
+
+[numthreads(kClearThreadGroupSize, 1, 1)]
+void clear_voxel_hash_table(int id : SV_DispatchThreadID)
+{
+  if (id.x >= nodeHashTableSize)
+    return;
+
+  nodeHashTable[id.x].id = kNullVoxelHashId;
+}
+
+[numthreads(kClearThreadGroupSize, 1, 1)]
+void clear_auto_smooth_vert_data_table(int id : SV_DispatchThreadID)
+{
+  if (id.x >= autoSmoothVertDataPoolSize)
+    return;
+
+  autoSmoothVertDataTable[id.x].id = kNullAutoSmoothCacheId;
+  autoSmoothVertDataTable[id.x].numNormals = 0;
+}
+
+[numthreads(kClearThreadGroupSize, 1, 1)]
+void clear_voxel_cache(int id : SV_DispatchThreadID)
+{
+  if (id.x >= int(voxelCacheSize))
+    return;
+
+  voxelCacheIdTable[id.x] = kNullVoxelCacheId;
+  voxelCache[id.x].data = kFltMax;
+}
+
+[numthreads(kThreadGroupSize, 1, 1)]
+void register_top_nodes(int3 id : SV_DispatchThreadID)
+{
+  int iBrush = id.x;
+  if (iBrush >= numBrushes)
+    return;
+
+  register_brush_aabb(iBrush);
+}
+
+[numthreads(1, 1, 1)]
+void update_branching_indirect_dispatch_args(int3 id : SV_DispatchThreadID)
+{
+  indirectDispatchArgs[0] = 
+    max
+    (
+      1, 
+      uint
+      (
+        min
+        (
+          nodePoolSize, 
+          aNumNodesAllocated[currentNodeDepth + 1]
+        ) 
+        * (enable2dMode ? (currentNodeBranchingFactor * currentNodeBranchingFactor) : (currentNodeBranchingFactor * currentNodeBranchingFactor * currentNodeBranchingFactor))
+        + kThreadGroupSize - 1
+      ) / kThreadGroupSize
+    );
+}
+
+[numthreads(kThreadGroupSize, 1, 1)]
+void allocate_child_nodes(uint3 id : SV_DispatchThreadID)
+{
+  uint f = currentNodeBranchingFactor;
+  uint ff = f * f;
+  uint fff = ff * f;
+  uint iNode = uint(id.x) / (enable2dMode ? ff : fff);
+  if (iNode >= uint(aNumNodesAllocated[currentNodeDepth + 1]))
+    return;
+
+  for (int i = 1; i <= currentNodeDepth; ++i)
+    iNode += aNumNodesAllocated[i];
+  if (iNode >= nodePoolSize)
+    return;
+
+  uint3 qChildNode = (id.x / uint3(1, f, ff)) % f;
+  float childSize = currentNodeSize / currentNodeBranchingFactor;
+  float3 childCenter = nodePool[iNode].center - ((f / 2) - 0.5f - qChildNode) * childSize;
+  if (enable2dMode)
+    childCenter.z = 0.0f;
+  float childDiag = (enable2dMode ? 1.415f : 1.733f) * childSize;
+
+  SdfBrushMaterial mat;
+  float d = sdf_masked_brushes(childCenter, get_brush_mask_index(iNode), mat);
+  if (d > 0.5f * childDiag || (d < -childDiag && !enable2dMode))
+  {
+    // could deviation from distortion or modifier possibly bring solid surface close to voxel?
+    bool deviationClose = false;
+
+    FOR_EACH_BRUSH(get_brush_mask_index(iNode), 
+      switch (aBrush[iBrush].op)
+      {
+        case kSdfDistort:
+        case kSdfModify:
+        {
+          float deviation = aBrush[iBrush].blend;
+          float res = sdf_distortion_modifier_bounds_query(childCenter, aBrush[iBrush]);
+          if (res <= childDiag 
+              && abs(d) - deviation <= childDiag)
+          {
+            deviationClose = true;
+          }
+
+          break;
+        }
+      }
+      if (deviationClose)
+        break;
+    );
+
+    if (!deviationClose)
+      return;
+  }
+
+  int iChildNode = allocate_node(childCenter, currentNodeDepth + 1, iNode);
+  if (iChildNode < 0)
+    return;
+
+  float halfChildSize = 0.5f * childSize;
+  Aabb childAabb = make_aabb(childCenter - halfChildSize, childCenter + halfChildSize);
+  nodePool[iChildNode].iBrushMask = allocate_node_brush_mask(iChildNode, childAabb);
+}
+
+[numthreads(1, 1, 1)]
+void update_voxel_indirect_dispatch_args(int3 id : SV_DispatchThreadID)
+{
+  indirectDispatchArgs[0] = 
+    max
+    (
+      1, 
+      uint
+      (
+        min
+        (
+          nodePoolSize, 
+          aNumNodesAllocated[currentNodeDepth + 1]
+        ) 
+        + kThreadGroupSize - 1
+      ) / kThreadGroupSize
+    );
+}
+

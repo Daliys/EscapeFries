@@ -1,0 +1,35 @@
+﻿/******************************************************************************/
+/*
+  Project   - MudBun
+  Publisher - Long Bunny Labs
+              http://LongBunnyLabs.com
+  Author    - Ming-Lun "Allen" Chou
+              http://AllenChou.net
+*/
+/******************************************************************************/
+
+#pragma kernel rig_bones
+
+#define kThreadGroupExtent (4)
+#define kThreadGroupSize (kThreadGroupExtent * kThreadGroupExtent * kThreadGroupExtent)
+
+#define MUDBUN_IS_COMPUTE_SHADER (1)
+
+#include "../../Shader/BoneFuncs.cginc"
+#include "../../Shader/GenPointDefs.cginc"
+
+RWStructuredBuffer<int> indirectDrawArgs;
+
+[numthreads(kThreadGroupSize, 1, 1)]
+void rig_bones(uint3 id : SV_DispatchThreadID)
+{
+  if (int(id.x) >= indirectDrawArgs[0])
+    return;
+
+  int iGenPoint = id.x;
+  
+  float4 boneWeight;
+  compute_brush_bone_weights(aGenPoint[iGenPoint].posNorm.xyz, aGenPoint[iGenPoint].boneIndex, boneWeight);
+  aGenPoint[iGenPoint].boneWeight = pack_rgba(boneWeight);
+}
+

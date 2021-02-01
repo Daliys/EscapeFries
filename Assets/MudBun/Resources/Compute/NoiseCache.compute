@@ -1,0 +1,31 @@
+﻿/******************************************************************************/
+/*
+  Project   - MudBun
+  Publisher - Long Bunny Labs
+              http://LongBunnyLabs.com
+  Author    - Ming-Lun "Allen" Chou
+              http://AllenChou.net
+*/
+/******************************************************************************/
+
+#pragma kernel generate_noise_cache
+
+#define kThreadGroupExtent (4)
+#define kThreadGroupSize (kThreadGroupExtent * kThreadGroupExtent * kThreadGroupExtent)
+
+#include "../../Shader/Noise/ClassicNoise3D.cginc"
+
+RWTexture3D<float> noiseCache;
+int3 noiseCacheDimension;
+float noiseCacheDensity;
+float3 noiseCachePeriod;
+
+[numthreads(kThreadGroupExtent, kThreadGroupExtent, kThreadGroupExtent)]
+void generate_noise_cache(uint3 id : SV_DispatchThreadID)
+{
+  if (any(id >= uint3(noiseCacheDimension)))
+    return;
+
+  noiseCache[id] = saturate(0.8f * pnoise(id / noiseCacheDensity, noiseCachePeriod) + 0.5f) - 0.5f;
+}
+

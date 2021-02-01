@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0127040138704d54fb2c4827e540cf5e, type: 3}
+  m_Name: Goo
+  m_EditorClassIdentifier: 
+  Color: {r: 0, g: 0.15903667, b: 0.4716981, a: 1}
+  Emission: {r: 0.018912425, g: 0.080944665, b: 0.16037738, a: 1}
+  Metallic: 0.283
+  Smoothness: 0.666

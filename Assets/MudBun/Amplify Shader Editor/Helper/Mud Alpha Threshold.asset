@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: Mud Alpha Threshold
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity
+    Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=18100\n-1835;269;1403;717;1154.575;476.2499;1.6;True;False\nNode;AmplifyShaderEditor.FunctionInput;8;-640,-384;Inherit;False;Screen
+    Position;2;0;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.FunctionInput;15;-640,-288;Inherit;False;Vertex
+    Position;3;1;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionInput;18;-640,-192;Inherit;False;Hash;1;2;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;27;-384,-224;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionInput;22;-640,-96;Inherit;False;Alpha;1;3;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput;19;-640,0;Inherit;False;Dither
+    Noise Texture;9;4;False;1;0;SAMPLER2D;0;False;1;SAMPLER2D;0\nNode;AmplifyShaderEditor.FunctionInput;26;-640,96;Inherit;False;Dither
+    Noise Texture Size;0;5;False;1;0;INT;256;False;1;INT;0\nNode;AmplifyShaderEditor.FunctionInput;9;-640,192;Inherit;False;Use
+    Random Dither;0;6;False;1;0;INT;0;False;1;INT;0\nNode;AmplifyShaderEditor.FunctionInput;6;-640,288;Inherit;False;Alpha
+    Cutout Threshold;1;7;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionInput;7;-640,384;Inherit;False;Dithering;1;8;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.CustomExpressionNode;20;256,-128;Inherit;False;float
+    alpha = AlphaIn@$computeOpaqueTransparency(ScreenPos, VertPos, Hash, DitherNoiseTexture,
+    DitherNoiseTextureSize, UseRandomDither > 0, AlphaCutoutThreshold, DitherBlend, 
+    alpha, AlphaThreshold)@$AlphaOut = alpha@;7;False;11;True;ScreenPos;FLOAT2;0,0;In;;Inherit;False;True;VertPos;FLOAT3;0,0,0;In;;Inherit;False;True;Hash;FLOAT;0;In;;Inherit;False;True;AlphaIn;FLOAT;0;In;;Inherit;False;True;AlphaOut;FLOAT;0;Out;;Inherit;False;True;AlphaThreshold;FLOAT;0;Out;;Inherit;False;True;DitherNoiseTexture;SAMPLER2D;0;In;;Inherit;False;True;DitherNoiseTextureSize;INT;0;In;;Inherit;False;True;UseRandomDither;INT;0;In;;Inherit;False;True;AlphaCutoutThreshold;FLOAT;0;In;;Inherit;False;True;DitherBlend;FLOAT;0;In;;Inherit;False;Compute
+    Opaque Transparency;True;False;0;12;0;FLOAT;0;False;1;FLOAT2;0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;SAMPLER2D;0;False;8;INT;0;False;9;INT;0;False;10;FLOAT;0;False;11;FLOAT;0;False;3;FLOAT;0;FLOAT;6;FLOAT;7\nNode;AmplifyShaderEditor.FunctionOutput;24;704,-128;Inherit;False;True;-1;Alpha;0;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;25;704,-32;Inherit;False;False;-1;Alpha
+    Threshold;1;False;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;27;0;15;0\nWireConnection;20;1;8;0\nWireConnection;20;2;27;0\nWireConnection;20;3;18;0\nWireConnection;20;4;22;0\nWireConnection;20;7;19;0\nWireConnection;20;8;26;0\nWireConnection;20;9;9;0\nWireConnection;20;10;6;0\nWireConnection;20;11;7;0\nWireConnection;24;0;20;6\nWireConnection;25;0;20;7\nASEEND*/\n//CHKSM=805B0CA820519C5C96D2A4BDB2A4C33FEFB9C773"
+  m_functionName: 
+  m_description: 
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 1
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_additionalDirectives: []
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems: []
+  m_nodeCategory: 3
+  m_customNodeCategory: 
+  m_previewPosition: 0
+  m_hidden: 0

@@ -591,7 +591,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    7: DREAMTECK_SPLINES
+    1: DREAMTECK_SPLINES;OBI_ONI_SUPPORTED
+    4: OBI_ONI_SUPPORTED
+    7: DREAMTECK_SPLINES;OBI_ONI_SUPPORTED
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 0

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: Mud Splat
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity
+    Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=18500\n-1542;209;1438;795;1539.785;140.2614;2.153371;True;False\nNode;AmplifyShaderEditor.ColorNode;47;-384,-448;Inherit;False;Property;_Color;Color;0;1;[HideInInspector];Fetch;True;0;0;False;0;False;1,1,1,1;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.ScreenParams;59;832,-576;Inherit;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SimpleDivideOpNode;8;928,-736;Inherit;False;2;0;FLOAT4;0,0,0,0;False;1;FLOAT;0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.ComponentMaskNode;39;1248,-736;Inherit;False;True;True;False;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;34;256,32;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.ComponentMaskNode;55;0,352;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.CustomExpressionNode;5;-384,-128;Inherit;False;float4
+    positionWs@$float2 metallicSmoothness@$mudbun_splat_vert(VertexID, positionWs,
+    PositionLs, NormalWs, NormalLs, TangentWs, TangentLs, CenterWs, CenterLs, Color,
+    EmissionHash, metallicSmoothness, Tex, TextureWeight, SdfValue, Outward2dNormalLs,
+    Outward2dNormalWs)@$Metallic = metallicSmoothness.x@$Smoothness = metallicSmoothness.y@$return
+    positionWs.xyz@;3;False;17;True;VertexID;INT;0;In;;Inherit;False;True;PositionLs;FLOAT3;0,0,0;Out;;Inherit;False;True;NormalWs;FLOAT3;0,0,0;Out;;Inherit;False;True;NormalLs;FLOAT3;0,0,0;Out;;Inherit;False;True;TangentWs;FLOAT3;0,0,0;Out;;Inherit;False;True;TangentLs;FLOAT3;0,0,0;Out;;Inherit;False;True;CenterWs;FLOAT3;0,0,0;Out;;Inherit;False;True;CenterLs;FLOAT3;0,0,0;Out;;Inherit;False;True;Color;FLOAT4;0,0,0,0;Out;;Inherit;False;True;EmissionHash;FLOAT4;0,0,0,0;Out;;Inherit;False;True;Metallic;FLOAT;0;Out;;Inherit;False;True;Smoothness;FLOAT;0;Out;;Inherit;False;True;Tex;FLOAT2;0,0;Out;;Inherit;False;True;TextureWeight;FLOAT4;1,0,0,0;Out;;Inherit;False;True;SdfValue;FLOAT;0;Out;;Inherit;False;True;Outward2dNormalLs;FLOAT3;0,0,0;Out;;Inherit;False;True;Outward2dNormalWs;FLOAT3;0,0,0;Out;;Inherit;False;MudBun
+    Splat Point;False;False;0;17;0;INT;0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT3;0,0,0;False;4;FLOAT3;0,0,0;False;5;FLOAT3;0,0,0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT4;0,0,0,0;False;9;FLOAT4;0,0,0,0;False;10;FLOAT;0;False;11;FLOAT;0;False;12;FLOAT2;0,0;False;13;FLOAT4;1,0,0,0;False;14;FLOAT;0;False;15;FLOAT3;0,0,0;False;16;FLOAT3;0,0,0;False;17;FLOAT3;0;FLOAT3;2;FLOAT3;3;FLOAT3;4;FLOAT3;5;FLOAT3;6;FLOAT3;7;FLOAT3;8;FLOAT4;9;FLOAT4;10;FLOAT;11;FLOAT;12;FLOAT2;13;FLOAT4;14;FLOAT;15;FLOAT3;16;FLOAT3;17\nNode;AmplifyShaderEditor.ComputeScreenPosHlpNode;18;464,-736;Inherit;False;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.UnityObjToClipPosHlpNode;17;256,-736;Inherit;False;1;0;FLOAT3;0,0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.ComponentMaskNode;16;704,-672;Inherit;False;False;False;False;True;1;0;FLOAT4;0,0,0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;7;320,-144;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT4;0,0,0,0;False;1;COLOR;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;15;224,592;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;2;0,656;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;14;0,848;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;10;224,784;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RangedFloatNode;65;736,0;Inherit;False;Constant;_Float1;Float
+    1;4;0;Create;True;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;58;1088,-736;Inherit;False;2;2;0;FLOAT4;0,0,0,0;False;1;FLOAT4;0,0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;3;32,-96;Inherit;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.SimpleAddOpNode;35;512,96;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0.5,0.5;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.ClampOpNode;36;672,96;Inherit;False;3;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;2;FLOAT2;1,1;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.ComponentMaskNode;56;0,256;Inherit;False;False;False;False;True;1;0;FLOAT4;0,0,0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;20;32,-736;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;63;1536,-256;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RangedFloatNode;64;736,-80;Inherit;False;Constant;_Float0;Float
+    0;4;0;Create;True;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.ComponentMaskNode;13;640,-384;Inherit;False;False;False;False;True;1;0;COLOR;0,0,0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;6;512,256;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.ConditionalIfNode;62;992,-192;Inherit;False;True;5;0;FLOAT;0;False;1;FLOAT;0.5;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.RangedFloatNode;49;-384,576;Inherit;False;Property;_Metallic;Metallic;2;1;[HideInInspector];Fetch;True;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0\nNode;AmplifyShaderEditor.RangedFloatNode;46;-384,800;Inherit;False;Property;_Smoothness;Smoothness;3;1;[HideInInspector];Fetch;True;0;0;False;0;False;1;0;0;1;0;1;FLOAT;0\nNode;AmplifyShaderEditor.ColorNode;48;-384,384;Inherit;False;Property;_Emission;Emission;1;1;[HideInInspector];Fetch;True;0;0;False;0;False;1,1,1,1;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.ComponentMaskNode;54;0,160;Inherit;False;True;True;True;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.VertexToFragmentNode;11;224,160;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.LengthOpNode;41;512,-32;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.VertexIdVariableNode;1;-544,-128;Inherit;False;0;1;INT;0\nNode;AmplifyShaderEditor.StaticSwitch;50;1216,-32;Inherit;False;Property;MUDBUN_QUAD_SPLATS;MUDBUN_QUAD_SPLATS;4;0;Create;False;0;0;False;0;False;0;0;0;False;MUDBUN_QUAD_SPLATS;Toggle;2;Key0;Key1;Fetch;False;True;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;67;0,1168;Inherit;False;False;-1;Outward
+    2D Normal (Local);16;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;42;320,-448;Inherit;False;False;-1;Vertex
+    Normal (Local);10;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;45;0,976;Inherit;False;False;-1;Texture
+    Weight;6;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT4;0\nNode;AmplifyShaderEditor.FunctionOutput;66;0,1072;Inherit;False;False;-1;SDF
+    Value;17;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;26;384,592;Inherit;False;False;-1;Metallic;4;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;52;32,-352;Inherit;False;False;-1;Vertex
+    Tangent (World);11;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;61;320,-256;Inherit;False;False;-1;Splat
+    Center (Local);14;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;21;32,-544;Inherit;False;True;-1;Vertex
+    Position (World);7;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;60;32,-256;Inherit;False;False;-1;Splat
+    Center (World);13;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;27;672,256;Inherit;False;False;-1;Emission;3;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;29;832,96;Inherit;False;False;-1;UV;1;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.FunctionOutput;57;672,368;Inherit;False;False;-1;Brush
+    Hash;19;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;24;1696,-256;Inherit;False;False;-1;Alpha;2;False;1;0;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;22;544,-144;Inherit;False;False;-1;Color;0;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0\nNode;AmplifyShaderEditor.FunctionOutput;43;320,-544;Inherit;False;False;-1;Vertex
+    Position (Local);8;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;53;320,-352;Inherit;False;False;-1;Vertex
+    Tangent (Local);12;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;28;32,-448;Inherit;False;False;-1;Vertex
+    Normal (World);9;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;68;0,1264;Inherit;False;False;-1;Outward
+    2D Normal (World);15;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.FunctionOutput;25;1472,-736;Inherit;False;False;-1;Screen
+    Pos;18;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.FunctionOutput;23;384,784;Inherit;False;False;-1;Smoothness;5;False;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;8;0;18;0\nWireConnection;8;1;16;0\nWireConnection;39;0;58;0\nWireConnection;34;0;5;13\nWireConnection;55;0;48;0\nWireConnection;5;0;1;0\nWireConnection;18;0;17;0\nWireConnection;17;0;20;0\nWireConnection;16;0;18;0\nWireConnection;7;0;47;0\nWireConnection;7;1;3;0\nWireConnection;15;0;49;0\nWireConnection;15;1;2;0\nWireConnection;2;0;5;11\nWireConnection;14;0;5;12\nWireConnection;10;0;46;0\nWireConnection;10;1;14;0\nWireConnection;58;0;8;0\nWireConnection;58;1;59;0\nWireConnection;3;0;5;9\nWireConnection;35;0;34;0\nWireConnection;36;0;35;0\nWireConnection;56;0;5;10\nWireConnection;20;0;5;0\nWireConnection;63;0;13;0\nWireConnection;63;1;50;0\nWireConnection;13;0;7;0\nWireConnection;6;0;11;0\nWireConnection;6;1;55;0\nWireConnection;62;0;41;0\nWireConnection;62;2;64;0\nWireConnection;62;3;65;0\nWireConnection;62;4;65;0\nWireConnection;54;0;5;10\nWireConnection;11;0;54;0\nWireConnection;41;0;34;0\nWireConnection;50;1;62;0\nWireConnection;50;0;65;0\nWireConnection;67;0;5;16\nWireConnection;42;0;5;4\nWireConnection;45;0;5;14\nWireConnection;66;0;5;15\nWireConnection;26;0;15;0\nWireConnection;52;0;5;5\nWireConnection;61;0;5;8\nWireConnection;21;0;5;0\nWireConnection;60;0;5;7\nWireConnection;27;0;6;0\nWireConnection;29;0;36;0\nWireConnection;57;0;56;0\nWireConnection;24;0;63;0\nWireConnection;22;0;7;0\nWireConnection;43;0;5;2\nWireConnection;53;0;5;6\nWireConnection;28;0;5;3\nWireConnection;68;0;5;17\nWireConnection;25;0;39;0\nWireConnection;23;0;10;0\nASEEND*/\n//CHKSM=318A01789B09F9E3E518BD332C69263DC911782F"
+  m_functionName: 
+  m_description: 
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 1
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_additionalDirectives:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems:
+    - LineType: 1
+      LineValue: SHADER_GRAPH
+      GUIDToggle: 0
+      GUIDValue: 
+      Origin: 2
+    - LineType: 2
+      LineValue: multi_compile _ MUDBUN_PROCEDURAL
+      GUIDToggle: 0
+      GUIDValue: 
+      Origin: 2
+    - LineType: 2
+      LineValue: multi_compile _ MUDBUN_QUAD_SPLATS
+      GUIDToggle: 0
+      GUIDValue: 
+      Origin: 2
+    - LineType: 0
+      LineValue: Assets/MudBun/Shader/Render/ShaderCommon.cginc
+      GUIDToggle: 0
+      GUIDValue: 
+      Origin: 2
+    - LineType: 0
+      LineValue: Assets/MudBun/Shader/Render/SplatCommon.cginc
+      GUIDToggle: 0
+      GUIDValue: 
+      Origin: 2
+  m_nodeCategory: 3
+  m_customNodeCategory: 
+  m_previewPosition: 0
+  m_hidden: 0
